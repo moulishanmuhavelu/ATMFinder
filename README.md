@@ -11,23 +11,23 @@ Maven
 JDK 8
 Tomcat
 
-Application Security:
+### Application Security:
 
 In memory authentication is used. Two users "user" and "admin" are created. The password for both the users is "backbase"
 
 
-Configuration:
+### Configuration:
 
 URL to call REST API provided by ING is configured in application.properties. The JSON returned by this API is converted into model object and returned by ATMFinderService.java class.
 
-Controller:
+### Controller:
 
 The application provides below endpoints:
 
 /atmLocations -> To get all atm locations in Netherlands
 /atmLocations/{city} -> To get all atm locations in a given city
 
-Front End:
+### Front End:
 
 Thymeleaf is used in front end for the UI. Also Jquery is used to retrieve the data using ajax calls.
 
