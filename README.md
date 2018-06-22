@@ -1,30 +1,34 @@
 # ATMFinder
 
-A spring boot project with basic spring security in place. which consumes a rest-api, and presents a neat UI with output of the rest api encapsulated in a Datatable using jquery.
+ATM Finder is a Java web application to display the list of ATMs. It calls the ING REST API displays the JSON result in a table.
 
-How it was Implemented ?
+Technologies: 
 
-Utilized spring initializer project to generate the basic code structure and architecture of the application.
-- Added thymeleaf templating engine, with basic spring security starter and spring boot jersey dependencies.
-- Configured Basic Security, Resttemplate calls with by-passing ssl for consuming ING web service ( https://www.ing.nl/api/locator/atms/ )
+Spring boot 
+Spring Security
+Thymeleaf
+Maven
+JDK 8
+Tomcat
 
-How is the Architecture Designed ?
+Application Security:
 
-A basic spring MVC design : Request Callstack : Controller -> Service -> Repository and vice a versa for response. with a layer of application level security exposing all service / resource calls as authenticated.
+In memory authentication is used. Two users "user" and "admin" are created. The password for both the users is "backbase"
 
-Controllers :
-AtmController.java : exposes 2 rest api's 
-- /locations : Lists all the atm addresses exposed by ING atm locator service as a proper JSON respone.
-- /locations/{city} : Filters and lists all locations based on provided city as a proper JSON response.
 
-Services :
-AtmLocator.java : implements business logic behind the exposed web services utilizing output from repository.
+Configuration:
 
-Repositories :
-AtmDataPopulator.java : utilizes spring rest-template for consuming the ING ATM locator service.
+URL to call REST API provided by ING is configured in application.properties. The JSON returned by this API is converted into model object and returned by ATMFinderService.java class.
 
-Tools used :
-- Maven
-- JDK 8
-- Spring boot 1.5.13
-- Tomcat 7
+Controller:
+
+The application provides below endpoints:
+
+/atmLocations -> To get all atm locations in Netherlands
+/atmLocations/{city} -> To get all atm locations in a given city
+
+Front End:
+
+Thymeleaf is used in front end for the UI. Also Jquery is used to retrieve the data using ajax calls.
+
+
