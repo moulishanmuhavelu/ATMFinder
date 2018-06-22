@@ -1,6 +1,7 @@
 package com.backbase.atmfinder.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,15 +48,20 @@ public class ATMFinderService {
 		return getATMLocations();
 	}
     
+	public List<String> getAllCities() throws IOException {
+		return getATMLocations().stream().map(
+											atm->atm.getAddress().getCity()).collect(Collectors.toList());
+	}
+
 	public List<ATMLocation> getAllATMLocationsForCity(String city) throws IOException {
 		
 		List<ATMLocation> allATMlocations = getATMLocations();
 		logger.debug("getATMLocations successful");
-		
-		return allATMlocations
-					.stream()
-					.filter(atmLocation -> atmLocation.getAddress().getCity().equalsIgnoreCase(city))
-					.collect(Collectors.toList());
+		allATMlocations = allATMlocations
+				.stream()
+				.filter(atmLocation -> atmLocation.getAddress().getCity().equalsIgnoreCase(city))
+				.collect(Collectors.toList());
+		return allATMlocations;
 	}
 
 	private List<ATMLocation> getATMLocations() throws IOException {
@@ -64,8 +70,9 @@ public class ATMFinderService {
 		logger.debug("removed garbage characters in response");
         ObjectMapper objectMapper = new ObjectMapper();
         ATMLocation[] atmLocations = objectMapper.readValue(atmLocationsString, ATMLocation[].class);
-
-        return Arrays.asList(atmLocations);
+        List<ATMLocation> atmlocations = Arrays.asList(atmLocations);
+		atmlocations.sort((a1,a2)-> a1.getAddress().getCity().compareTo(a2.getAddress().getCity()));
+        return atmlocations;
 	}
 
 }

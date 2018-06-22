@@ -37,6 +37,20 @@ public class Controller {
 		return atmLocations;
 	}
 
+	@GetMapping("/cities")
+	@ResponseBody
+	public List<String> getAllCities() throws ATMFinderException {
+		List<String> cities = null;
+		
+		try {
+			cities = atmFinderService.getAllCities();
+		} catch (IOException e) {
+			logger.error(e.getMessage(),e);
+			throw new ATMFinderException(e.getMessage(), e);
+		}
+		return cities;
+	}
+
 	@GetMapping("/atmLocations/{city}")
 	@ResponseBody
 	public List<ATMLocation> getATMLocationsForCity(@PathVariable("city") String city) throws ATMFinderException {
