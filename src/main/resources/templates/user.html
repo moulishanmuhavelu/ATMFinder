@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="/js/atmlocations.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>List of ING ATMs</h1>
+        <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h3>
+    </div>
+	<div>
+	    <table id="atmLocations" class="display" cellspacing="0" width="100%" >
+	        <thead>
+	        	<tr>
+			        <th>Street</th>
+			        <th>Housenumber</th>
+			        <th>Postalcode</th>
+			        <th>City</th>
+			        <th>Latitude</th>
+			        <th>Longitude</th>
+			        <th>Distance</th>
+			        <th>Type</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        </tbody>
+	    </table>
+	</div>
+</div>
+<!-- /.container -->
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>
