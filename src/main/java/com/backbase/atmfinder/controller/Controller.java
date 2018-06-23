@@ -17,7 +17,7 @@ import com.backbase.atmfinder.model.ATMLocation;
 import com.backbase.atmfinder.service.ATMFinderService;
 
 @RestController
-@RequestMapping("/atmfinder")
+@RequestMapping("/service")
 public class Controller {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass().getName());

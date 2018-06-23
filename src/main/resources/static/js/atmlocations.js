@@ -7,7 +7,7 @@ $(document).ready(function() {
 	function ajaxGet(){
 		$.ajax({
 			type : "GET",
-			url : "/atmfinder/atmLocations",
+			url : "/atmfinder/service/atmLocations",
 			success: function(result){
 				$.each(result, function(i, atmlocation){
 					
@@ -37,7 +37,7 @@ $(document).ready(function() {
 	function loadCities(){
 		$.ajax({
 			type : "GET",
-			url : "/atmfinder/cities",
+			url : "/atmfinder/service/cities",
 			success: function(result){
 				$.each(result, function(i, city){
 					

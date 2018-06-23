@@ -9,11 +9,11 @@ Spring Security
 Thymeleaf
 Maven
 JDK 8
-Tomcat
+Tomcat 7.0.88 or higher
 
 ### Application Security:
 
-In memory authentication is used. Two users "user" and "admin" are created. The password for both the users is "backbase"
+In memory authentication is used. Two users "user" and "admin" are created. The password for both the users is "password"
 
 
 ### Configuration:
@@ -24,11 +24,11 @@ URL to call REST API provided by ING is configured in application.properties. Th
 
 The application provides below endpoints:
 
-/atmLocations -> To get all atm locations in Netherlands
-/atmLocations/{city} -> To get all atm locations in a given city
+/service/atmLocations -> To get all atm locations in Netherlands
+/service/atmLocations/{city} -> To get all atm locations in a given city
 
 ### Front End:
 
 Thymeleaf is used in front end for the UI. Also Jquery is used to retrieve the data using ajax calls.
 
-
+The application can be deployed as a war file in tomcat and started. It can also run with embedded tomcat in any IDE. 
